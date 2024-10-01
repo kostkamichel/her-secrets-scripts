@@ -86,6 +86,7 @@ function install_docker {
 function add_user_to_docker_group {
     echo "Ajout de l'utilisateur au groupe Docker..."
     sudo usermod -aG docker "${data.azurerm_key_vault_secret.vm_admin_username.value}"
+    newgrp docker
 }
 
 function install_azure_cli {
