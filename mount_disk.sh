@@ -15,7 +15,7 @@ fi
 # Créer une partition si elle n'existe pas
 if [ ! -b "$PARTITION" ]; then
     echo "Création de la partition sur $DISK..."
-    echo -e "n\np\n1\n\n\nw" | sudo fdisk $DISK
+    echo -e "n\np\n1\n\n\nw" | sudo parted $DISK --script mklabel gpt mkpart ${FS_TYPE}part $FS_TYPE 0% 100%
     sudo partprobe $DISK
 fi
 
